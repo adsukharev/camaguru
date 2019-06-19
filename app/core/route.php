@@ -12,6 +12,13 @@ class Route {
 		$model_file = '';
 		$model_path = "app/models/";
 
+		if (!empty($_POST)){
+			include "app/controllers/controller_post.php";
+			$controller = new Controller_Post;
+			$controller->post_photo();
+			// include "app/views/view_template.php";
+			exit();
+		}
 		$routes = explode('/', $_SERVER['REQUEST_URI']);
 
 		if (!empty($routes[1])){
@@ -21,7 +28,6 @@ class Route {
 		if (!empty($routes[2])){
 			$controller_method = $routes[2];
 		}
-
 		$model_name = 'Model_'.$model_name;
 		$controller_name = 'Controller_'.$controller_name;
 
@@ -55,7 +61,8 @@ class Route {
 
 	function ErrorPage404(){
 		$host = 'http://'.$_SERVER['HTTP_HOST'];
-		echo("404");
+		echo("NOT FOUND 404");
+		exit();
 	}
 
 }
