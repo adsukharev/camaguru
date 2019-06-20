@@ -12,27 +12,22 @@ class Controller_auth extends Controller{
 	}
 
 	function signUp(){
-		$data = $_POST;
-		if ($this->model->checkUserExist($data['login'])){
-			$this->model->addUser($data);
-			$this->view->render('view_main.php', $this->view->template_view);
+		if ($this->model->checkUserExist($_POST['login'])){
+			echo "User has already singed up";
 		}
 		else {
-			echo "User has already singed up";
+			$this->model->addUser($_POST);
+			$this->view->render('view_main.php', $this->view->template_view);
 		}
 	}
 
-	function signIn($data){
-		if ($this->model->checkUserExist($data['login'])){
-			if ($this->model->checkLoginPass($data['pass'])){
-				$this->view->render('view_main.php', $this->view->template_view);
-			}
-			else {
-				echo "Password is invalid";
-			}
+	function signIn(){
+		$check = $this->model->checkLoginPass($_POST);
+		if (check == 1){
+			$this->view->render('view_main.php', $this->view->template_view);
 		}
 		else {
-			echo "User does not exist";
+			echo $check;
 		}
 	}
 

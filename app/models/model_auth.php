@@ -7,17 +7,27 @@ class Model_auth extends Model {
 	}
 
 	function checkUserExist($login){
-		if (!array_key_exists($login, $this->users)){
+		if (array_key_exists($login, $this->users)){
 			return 1;
 		}
 		return 0;
 	}
 
-	function checkLoginPass($pass){
-		if (array_key_exists($pass, $this->users)){
-			return 1;
+	function checkLoginPass($data){
+		$login = $data['login'];
+		$pass = $data['pass'];
+		if ($this->checkUserExist($login)){
+			if ($this->users[$login] == $pass){
+				return 1; ##succes
+			}
+			else {
+				return ("Password is invalid");
+			}
 		}
-		return 0;
+		else {
+			return ("User does not exist");
+		}
+
 	}
 
 

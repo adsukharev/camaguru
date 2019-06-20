@@ -6,14 +6,14 @@ class Route {
 		$controller_array = ROUTE::getUri();
 		$controller_name = $controller_array[0];
 		$controller_method = $controller_array[1];
-		if ($controller_method != 'index')
-			ROUTE::initModelController($controller_name, "model");
-		ROUTE::initModelController($controller_name, "controller");
+
+		ROUTE::initModel($controller_name);
+		ROUTE::initController($controller_name);
 		ROUTE::initMethod($controller_name, $controller_method);
 	}
 
 	function getUri(){
-		$controller_name = 'auth';
+		$controller_name = 'main';
 		$controller_method = 'index';
 		print_r($_SERVER['REQUEST_URI']);
 		$routes = explode('/', $_SERVER['REQUEST_URI']);
@@ -26,15 +26,20 @@ class Route {
 		return array($controller_name, $controller_method);
 	}
 
-	function initModelController($name, $model_controller){
-		if ($model_controller == "model"){
-			$name = 'model_'.$name;
-			$path = 'app/models/';
+	function initModel($name){
+		$name = 'model_'.$name;
+		$path = 'app/models/';
+		$file = strtolower($name).'.php';
+		$path = $path.$file;
+		if (file_exists($path)){
+			include $path;
 		}
-		else {
-			$name = 'controller_'.$name;
-			$path = 'app/controllers/';
-		}
+	}
+
+	function initController($name){
+
+		$name = 'controller_'.$name;
+		$path = 'app/controllers/';
 		$file = strtolower($name).'.php';
 		$path = $path.$file;
 		if (file_exists($path)){
