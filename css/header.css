@@ -1,0 +1,5 @@
+
+.container.header {
+	background-color: silver;
+	grid-template-columns: 1fr 1fr;
+}
