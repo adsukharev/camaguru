@@ -3,11 +3,12 @@
 class Model_auth extends Model {
 
 	function __construct(){
-		$this->users = $this->getUsers();
+
 	}
 
 	function checkUserExist($login){
-		if (array_key_exists($login, $this->users)){
+		$this->user = $this->getUser($login);
+		if ($this->user['login'] == $login){
 			return 1;
 		}
 		return 0;
@@ -15,9 +16,10 @@ class Model_auth extends Model {
 
 	function checkLoginPass($data){
 		$login = $data['login'];
-		$pass = $data['pass'];
+		$pass = hash('Whirlpool', trim($data['pass']));
+
 		if ($this->checkUserExist($login)){
-			if ($this->users[$login] == $pass){
+			if ($this->user['pass'] == $pass){
 				return 1;
 			}
 			else {
@@ -32,7 +34,18 @@ class Model_auth extends Model {
 
 
 	function addUser($data){
-		return 1;
+		$email = $data['email'];
+		$login = $data['login'];
+		$pass = hash('Whirlpool', trim($data['pass']));
+		$conn = $this->connectToDB();
+		$sql = "insert into users (login, email, pass) values ('{$login}', '{$email}', '{$pass}');";
+		try{
+			$conn->exec($sql);
+		}
+		catch (PDOException $e){
+			echo $sql . "<br>" . $e->getMessage();
+		}
+		$conn = null;
 	}
 
 }

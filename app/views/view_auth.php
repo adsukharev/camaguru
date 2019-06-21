@@ -13,6 +13,8 @@
 <div>
 	<h3>SignUp</h3>
 	<form name="SignUp" action="/auth/signUp" method="post">
+        Email: <input type=text name="email" value=''>
+        <br>
 		Login: <input type=text name="login" value=''>
 		<br>
 		Password: <input type=text name="pass" value=''>

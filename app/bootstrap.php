@@ -1,7 +1,7 @@
 <?php
 
 // init database
- require_once 'config/setup.php';
+require_once 'config/setup.php';
 
 // init core files MVC
 require_once 'core/model.php';

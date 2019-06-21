@@ -1,6 +1,6 @@
 <?php
 
-require_once "database.php";
+include "database.php";
 
 // Сreation of db
 try {
@@ -34,7 +34,7 @@ try {
             id INT NOT NULL AUTO_INCREMENT,
             login VARCHAR(255) NOT NULL,
             email VARCHAR(255) NOT NULL,
-            password VARCHAR(255) NOT NULL, 
+            pass VARCHAR(1024) NOT NULL, 
             notification BOOLEAN DEFAULT 1,
             PRIMARY KEY (id)
         ) ;";
@@ -90,8 +90,11 @@ catch(PDOException $e){
 }
 
 //insert root user
-//insert into users (login, email, password) values ('root', 'root@mail.ru', '123');
+//insert into users (login, email, pass) values ('root', 'root@mail.ru', '344907e89b981caf221d05f597eb57a6af408f15f4dd7895bbd1b96a2938ec24a7dcf23acb94ece0b6d7b0640358bc56bdb448194b9305311aff038a834a079f');
 
 $conn = null;
 
 ?>
+
+<!--DELETE FROM `users` WHERE `id` = 1;-->
+<!--ALTER TABLE users MODIFY password VARCHAR(1024);-->
