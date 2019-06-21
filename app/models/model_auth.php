@@ -18,7 +18,7 @@ class Model_auth extends Model {
 		$pass = $data['pass'];
 		if ($this->checkUserExist($login)){
 			if ($this->users[$login] == $pass){
-				return 1; ##succes
+				return 1;
 			}
 			else {
 				return ("Password is invalid");

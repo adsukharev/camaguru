@@ -23,7 +23,7 @@ class Controller_auth extends Controller{
 
 	function signIn(){
 		$check = $this->model->checkLoginPass($_POST);
-		if (check == 1){
+		if ($check == 1){
 			$this->view->render('view_main.php', $this->view->template_view);
 		}
 		else {

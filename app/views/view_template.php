@@ -1,13 +1,11 @@
 
-<!-- <!DOCKTYPE html> -->
 <html lang="en">
 <head>
-	<meta charset="utf-8"/>
+	<meta charset="utf-8">
 	<title>Template</title>
-	<!-- <link rel="stylesheet" href="../../css/common.css"> -->
-	<link rel="stylesheet" type="text/css" href="/css/common.css" />
-	<!-- <link rel="stylesheet" href="../../css/header.css">
-	<link rel="stylesheet" href="../../css/main.css"> -->
+	<link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/header.css">
+	<link rel="stylesheet" href="/css/main.css">
 </head>
 
 <body>
@@ -25,9 +23,9 @@
 	</header>
 
 	<main>
-		<!-- <div class="container header"> -->
+		 <div class="container main">
 			<?php include 'app/views/'.$content_view; ?>
-		<!-- </div> -->
+		 </div>
 	</main>
 
 	<footer>

@@ -1,4 +1,3 @@
-/* .container.main {
-	background-color: blue;
-	grid-template-columns: repeat(2, 1fr);
-} */
+.container.main {
+	grid-template-columns: 1fr 1fr;
+}

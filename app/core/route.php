@@ -62,32 +62,6 @@ class Route {
 		}
 	}
 
-	// function initController($controller_name){
-	// 	$controller_name = 'Controller_'.$controller_name;
-	// 	$controller_file = strtolower($controller_name).'.php';
-	// 	$controller_path = $controller_path.$controller_file;
-	// 	if (file_exists($controller_path))
-	// 	{
-	// 		include $controller_path;
-	// 	}
-	// 	else {
-	// 		ROUTE::ErrorPage404();
-	// 	}
-	// }
-	// function handle_post($post){
-	// 	print_r($post);
-	// 	include "app/controllers/controller_auth.php";
-	// 	$controller = new Controller_auth();
-	// 	if (array_key_exists("SignUp", $post)){
-	// 		$controller->signUp($post);
-	// 	}
-	// 	elseif (array_key_exists("SignIn", $post)){
-	// 		$controller->signIn($post);
-	// 	}
-	// 	// include "app/views/view_template.php";
-	// 	exit();
-	// }
-
 	function ErrorPage404(){
 		$host = 'http://'.$_SERVER['HTTP_HOST'];
 		echo("NOT FOUND 404");
