@@ -31,6 +31,11 @@ class Controller_auth extends Controller{
 		}
 	}
 
+	function signOut(){
+		$this->model->signOut();
+		$this->index();
+	}
+
 }
 
 ?>

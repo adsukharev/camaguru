@@ -1,0 +1,10 @@
+.container.profile {
+	grid-template-columns: 1fr;
+	align-items: center;
+	justify-items: center;
+}
+
+#notification {
+	width: 1vw;
+	height: 1vw;
+}

@@ -2,8 +2,9 @@
 
 class Model_auth extends Model {
 
-	function __construct(){
-
+	function signOut(){
+		session_start();
+		$_SESSION['loggued_on_user'] = '';
 	}
 
 	function checkUserExist($login){
@@ -33,7 +34,6 @@ class Model_auth extends Model {
 		}
 
 	}
-
 
 	function addUser($data){
 		$email = $data['email'];

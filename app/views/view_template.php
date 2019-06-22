@@ -1,31 +1,39 @@
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="utf-8">
 	<title>Template</title>
 	<link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/auth.css">
     <link rel="stylesheet" href="/css/header.css">
 	<link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/profile.css">
 </head>
 
 <body>
 	<header>
 		<div class="container header">
 			<div>
-				header1
+				<a href="/main" class="">InstaCamaguru</a>
 			</div>
 
+            <div>
+                <a href="/gallery" class="">Gallery</a>
+            </div>
+
 			<div>
-				header2
+                <a href="/profile" class="">Profile</a>
 			</div>
+
+            <div>
+                <a href="/auth/signOut" class="">SignOut</a>
+            </div>
 
 		</div>
 	</header>
 
 	<main>
-		 <div class="container main">
 			<?php include 'app/views/'.$content_view; ?>
-		 </div>
 	</main>
 
 	<footer>

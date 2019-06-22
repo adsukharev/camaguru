@@ -1,5 +1,18 @@
 
 .container.header {
-	background-color: silver;
-	grid-template-columns: 1fr 1fr;
+	background-color: rgb(236,87,103);
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+	justify-items: center;
+	align-items: center;
+}
+
+.container.header a {
+	text-decoration: none;
+	color: white;
+	font-weight: bold;
+	font-size: 2vw;
+}
+
+.container.header div {
+	height: 5vw;
 }

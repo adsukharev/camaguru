@@ -43,7 +43,6 @@ class Model {
 		$sth = $conn->prepare($sql);
 		$sth->execute();
 		$user = $sth->fetch();
-		print_r($user);
 		$conn = null;
 		return ($user);
 	}

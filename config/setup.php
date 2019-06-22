@@ -98,3 +98,4 @@ $conn = null;
 
 <!--DELETE FROM `users` WHERE `id` = 1;-->
 <!--ALTER TABLE users MODIFY password VARCHAR(1024);-->
+<!--tail -f /var/log/apache2/error_log-->
