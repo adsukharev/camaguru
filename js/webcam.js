@@ -27,7 +27,7 @@ async function takeScreenshot() {
     canvas.height = video.videoHeight;
     canvas.getContext('2d').drawImage(video, 0, 0);
     // let canvasData = canvas.toDataURL('image/jpeg');
-    canvas.toBlob(async function (blob) {
+    canvas.toBlob( function (blob) {
         sendPhoto(blob);
     });
 }
@@ -58,7 +58,7 @@ async function sendPhoto(file) {
 
 function fetchAddImage(base64) {
 
-    let buffer = Uint8Array.from(atob(base64), c => c.charCodeAt(0));
+    let buffer = Uint8Array.from(window.atob(base64), c => c.charCodeAt(0));
     let blob = new Blob([buffer], { type: "image/jpeg" });
     let url = URL.createObjectURL(blob);
     let img = document.createElement("img");

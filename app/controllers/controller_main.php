@@ -19,6 +19,9 @@ class Controller_main extends Controller{
 	function makeMagic(){
 
 		$this->model->downloadPhoto();
+		$this->model->mergePhotos();
+//		$this->model->addPhoto();
+		$this->model->sendPhoto();
 //		$this->view->render('view_main.php', $this->view->template_view);
 	}
 }
