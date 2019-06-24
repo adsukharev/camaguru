@@ -20,6 +20,7 @@ class Controller_main extends Controller{
 
 		$this->model->downloadPhoto();
 		$this->model->mergePhotos();
+		//			TO DO: add this line in production
 //		$this->model->addPhoto();
 		$this->model->sendPhoto();
 

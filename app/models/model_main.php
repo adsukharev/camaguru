@@ -21,29 +21,36 @@ class Model_main extends Model {
 	function mergePhotos(){
 
 		try{
-			$overlay = imagecreatefromjpeg('images/frames/vietnam.jpg');
-			if ($this->format == 'png'){
-				$image = imagecreatefrompng($this->file_download);
-			}
-			else {
-				$image = imagecreatefromjpeg($this->file_download);
-			}
+			$meme = "vietnam";
+//			init images
+			$imagesArr = $this->imagesInit($meme);
+			$image = $imagesArr[0];
+			$overlay = $imagesArr[1];
 
-			$size = getimagesize($this->file_download);
+//			change size of mem Image and delete white background
+			$dest = imagescale($image, 250, 250);
+			$srcArr = $this->resizeTransparentPhoto($overlay, $meme);
+			$src = $srcArr[0];
+			$sizeSrc = $srcArr[1];
+			$opacity = $srcArr[2];
 
-			imagealphablending($overlay, false);
-			imagesavealpha($overlay, true);
-			imagecopyresampled($overlay, $overlay,0,0,0,0,$size[0], $size[1], $size[0], $size[1]);
-			imagecopymerge( $image, $overlay, 0, 0, 0, 0, $size[0], $size[1], 50);
-//			imagecopy( $image, $overlay, 70, 20, 20, 0, $size[0], $size[1]);
+//			merge
+			if ($meme == "life")
+				imagecopymerge($dest, $src, 50, 50, 0, 0, $sizeSrc, $sizeSrc, $opacity);
+			else
+				imagecopymerge($dest, $src, 0, 0, 0, 0, $sizeSrc, $sizeSrc, $opacity);
 
-			imagepng($image, $this->target_file);
+//			save new image
+			imagepng($dest, $this->target_file);
+
+//			deleteImages
 			imagedestroy($image);
 			imagedestroy($overlay);
-//
-//			TO DO: add this line in production
-//			unlink($this->file_download);
+			imagedestroy($src);
+			imagedestroy($dest);
 
+			//			TO DO: add this line in production
+//			unlink($this->file_download);
 		}
 		catch(Exception $e) {
 		   echo $e->getMessage();
@@ -58,10 +65,9 @@ class Model_main extends Model {
 		if ($filename_array[0] == "blob"){
 			$this->format = "png";
 		}
-		else{
+		else {
 			$this->format = $filename_array[1];
 		}
-//		print_r($filename_array);
 		$this->file_download = $target_dir_download . $this->filenameDate . "." .$this->format;
 		if (move_uploaded_file($_FILES["photo"]["tmp_name"], $this->file_download)) {
 			return 1;
@@ -91,6 +97,50 @@ class Model_main extends Model {
 
 		$conn = null;
 	}
+
+	protected function resizeTransparentPhoto($overlay, $meme){
+
+
+		if ($meme == "vietnam"){
+			$size = 250;
+			$opacity = 40;
+		}
+		elseif ($meme == "dog"){
+			$size = 150;
+			$opacity = 100;
+		}
+		else{
+			$size = 150;
+			$opacity = 100;
+		}
+		$src = imagescale($overlay, $size, $size);
+		if ($meme != "vietnam"){
+			$black = imagecolorallocate($src, 255, 255, 255);
+			imagecolortransparent($src, $black);
+		}
+		return array($src, $size, $opacity);
+	}
+
+	protected function imagesInit($meme){
+
+		if ($meme == "cat"){
+			$overlay = imagecreatefromjpeg('images/frames/'.$meme.'.jpeg');
+		}
+		else {
+			$overlay = imagecreatefromjpeg('images/frames/'.$meme.'.jpg');
+		}
+
+		if ($this->format == 'png'){
+			$image = imagecreatefrompng($this->file_download);
+		}
+		else {
+			$image = imagecreatefromjpeg($this->file_download);
+		}
+
+		return array($image, $overlay);
+	}
+
+
 
 }
 
