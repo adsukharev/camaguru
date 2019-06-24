@@ -16,7 +16,7 @@
             Select image to upload:
             <input type="file" name="photo">
 <!--            <input type="submit" name="aa">-->
-            <button type="submit" onclick="sendPhoto();return false;" value="ok" name="upload">Use your photo</button>
+            <button type="submit" onclick="uploadPhoto();return false;" value="ok" name="upload">Use your photo</button>
         </form>
         <br>
 
