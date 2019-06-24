@@ -3,7 +3,6 @@
 class Model_auth extends Model {
 
 	function signOut(){
-		session_start();
 		$_SESSION['loggued_on_user'] = '';
 	}
 
@@ -21,7 +20,6 @@ class Model_auth extends Model {
 
 		if ($this->checkUserExist($login)){
 			if ($this->user['pass'] == $pass){
-				session_start();
 				$_SESSION['loggued_on_user'] = $login;
 				return 1;
 			}

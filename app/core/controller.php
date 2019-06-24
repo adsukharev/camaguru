@@ -8,7 +8,7 @@ class Controller {
 	function __construct(){
 		$this->view = new View();
 		session_start();
-		if ($_SESSION['loggued_on_user']){
+		if (array_key_exists('loggued_on_user', $_SESSION)){
 			$this->logged = $_SESSION['loggued_on_user'];
 		}
 		else {

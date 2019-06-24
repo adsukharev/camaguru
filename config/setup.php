@@ -91,11 +91,10 @@ catch(PDOException $e){
 
 //insert root user
 //insert into users (login, email, pass) values ('root', 'root@mail.ru', '344907e89b981caf221d05f597eb57a6af408f15f4dd7895bbd1b96a2938ec24a7dcf23acb94ece0b6d7b0640358bc56bdb448194b9305311aff038a834a079f');
-
+//DELETE FROM `users` WHERE `id` = 1;
+//ALTER TABLE users MODIFY password VARCHAR(1024);
+//tail -f /var/log/apache2/error_log
 $conn = null;
 
 ?>
 
-<!--DELETE FROM `users` WHERE `id` = 1;-->
-<!--ALTER TABLE users MODIFY password VARCHAR(1024);-->
-<!--tail -f /var/log/apache2/error_log-->

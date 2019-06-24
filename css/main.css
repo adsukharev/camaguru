@@ -1,7 +1,30 @@
 .container.main {
-	grid-template-columns: 3fr 1fr;
-	align-items: center;
+	grid-template-columns: 1fr 3fr 1fr;
+	/*align-items: center;*/
 	justify-items: center;
+	margin-top: 3vw;
+
+}
+
+.borderBlue {
+	text-align: center;
+	border:dashed cornflowerblue;
+}
+
+.container.main button{
+	margin: 1vw;
+	font-size: 1.2vw;
+	border-radius: 10px;
+	background-color: rgb(243,167,59);
+
+}
+
+#filters {
+	text-align: left;
+}
+
+#startVideo{
+	background-color: aquamarine;
 }
 
 

@@ -4,10 +4,9 @@ class Route {
 
 	static function start() {
 		$controller_array = ROUTE::getUri();
-		print_r($_SERVER['REQUEST_URI']);
+//		print_r($_SERVER['REQUEST_URI']);
 		$controller_name = $controller_array[0];
 		$controller_method = $controller_array[1];
-
 		ROUTE::initModel($controller_name);
 		ROUTE::initController($controller_name);
 		ROUTE::initMethod($controller_name, $controller_method);

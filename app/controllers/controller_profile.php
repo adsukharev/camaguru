@@ -2,9 +2,6 @@
 
 class Controller_profile extends Controller
 {
-//	function __construct(){
-//		parent::__construct();
-//	}
 
 	function index(){
 		if ($this->logged)
