@@ -22,7 +22,7 @@ class Controller_main extends Controller{
 		$this->model->mergePhotos();
 //		$this->model->addPhoto();
 		$this->model->sendPhoto();
-//		$this->view->render('view_main.php', $this->view->template_view);
+
 	}
 }
 
