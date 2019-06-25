@@ -12,7 +12,7 @@ function manageObjects(data) {
 function createButton(pathImage) {
 
     const button = document.createElement("button");
-    button.innerHTML = "Delete Photo";
+    button.innerHTML = "Delete";
     button.addEventListener ("click", function() {
         const result = confirm("Confirm for deleting image above");
         if (result){
@@ -43,10 +43,9 @@ function addObjects(image, button, pathImage) {
     document.getElementById(pathImage).appendChild(button);
 }
 
-async function deleteImage(pathImage) {
+window.deleteImage = async function deleteImage(pathImage) {
 
     const url = "/main/deleteImage";
-
     const formData = new FormData();
     formData.append('imageToDelete', pathImage);
 
@@ -62,14 +61,12 @@ async function deleteImage(pathImage) {
         return 0;
     }
 
-}
+};
 
 function deleteObjects(pathImage) {
 
     const element = document.getElementById(pathImage);
     element.parentNode.removeChild(element);
 }
-
-
 
 export {manageObjects};

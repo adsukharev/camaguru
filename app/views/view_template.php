@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="/css/header.css">
 	<link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/profile.css">
+    <link rel="stylesheet" href="/css/gallery.css">
 </head>
 
 <body>

@@ -129,7 +129,7 @@ class Model_main extends Model {
 		return array($src, $size, $opacity);
 	}
 
-	protected function imagesInit($meme){
+	private function imagesInit($meme){
 
 		if ($meme == "cat"){
 			$overlay = imagecreatefromjpeg('images/frames/'.$meme.'.jpeg');
@@ -148,7 +148,7 @@ class Model_main extends Model {
 		return array($image, $overlay);
 	}
 
-	protected function checkPhoto($format){
+	private function checkPhoto($format){
 		$formats = array("jpeg", "jpg", "png");
 		if (in_array($format, $formats)){
 			return 1;

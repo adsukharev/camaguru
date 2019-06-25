@@ -23,7 +23,7 @@
         <h4>Filters</h4>
         <form id="filters">
             <input type="radio" id="cat" name="mem" value="cat" checked>
-            <label for="cat">Space Cat </label>
+            <label for="cat"> Cat </label>
             <br>
             <input type="radio" id="life" name="mem" value="life">
             <label for="life">Thug Life </label>

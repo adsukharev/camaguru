@@ -6,10 +6,10 @@ class Model {
 	public $id;
 
 	function connectToDB(){
-		$DB_SERVER = "127.0.0.1"; // локалхост
-		$DB_USER = "root"; // имя пользователя
-		$DB_PASSWORD = "root"; // пароль если существует
-		$DB_NAME = "camaguruDB"; // база данных
+		$DB_SERVER = "127.0.0.1";
+		$DB_USER = "root";
+		$DB_PASSWORD = "root";
+		$DB_NAME = "camaguruDB";
 		$DB_DSN = "mysql:host=$DB_SERVER;dbname=$DB_NAME";
 		$OPTIONS = [
 			PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,

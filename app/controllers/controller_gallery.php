@@ -9,7 +9,16 @@ class Controller_gallery extends Controller{
 
 	function index(){
 
-		$this->view->render('view_gallery.php', $this->view->template_view);
+		$imagesUserId = $this->model->getImages();
+		if ($imagesUserId[0]){
+			$comments = $this->model->getComments();
+			array_push($imagesUserId, $comments);
+		}
+		else {
+			$imagesUserId[0] = "0";
+			$imagesUserId[2] = "0";
+		}
+		$this->view->render('view_gallery.php', $this->view->template_view, $imagesUserId);
 	}
 
 	function deleteImage(){
@@ -17,6 +26,12 @@ class Controller_gallery extends Controller{
 		$path = $_POST["imageToDelete"];
 		$res = $this->model->deleteImage($path);
 		echo $res;
+	}
+
+	function incLikes(){
+		$id = (int)$_POST['id'];
+		$like = (int)$_POST['like'] + 1;
+		$this->model->incLike($id, $like);
 	}
 }
 
