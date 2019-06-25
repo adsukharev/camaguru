@@ -1,0 +1,24 @@
+.container.gallery {
+	grid-template-columns: 1fr;
+	grid-template-rows: 3fr;
+	/*align-items: center;*/
+	justify-items: center;
+	margin-top: 3vw;
+
+}
+
+.borderBlue {
+	text-align: center;
+	border:dashed cornflowerblue;
+}
+
+.container.gallery button{
+	margin: 1vw;
+	font-size: 1.2vw;
+	border-radius: 10px;
+	background-color: rgb(243,167,59);
+
+}
+
+
+

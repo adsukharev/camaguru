@@ -50,5 +50,4 @@
 </div>
 
 <script type="module" src="/js/webcam.js"></script>
-<!--<script src="/js/actions_photo.js"></script>-->
 
