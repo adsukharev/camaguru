@@ -8,7 +8,7 @@ window.likePhoto = async function likePhoto(id) {
    formData.append("like", buttonValue);
 
    try{
-       let res = await fetch(url, {
+       await fetch(url, {
            method: 'POST',
            body: formData
        });

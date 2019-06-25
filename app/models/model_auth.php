@@ -38,7 +38,7 @@ class Model_auth extends Model {
 		$login = $data['login'];
 		$pass = hash('Whirlpool', trim($data['pass']));
 		$conn = $this->connectToDB();
-		$sql = "insert into users (login, email, pass) values ('{$login}', '{$email}', '{$pass}');";
+		$sql = "INSERT INTO users (login, email, pass) VALUES ('{$login}', '{$email}', '{$pass}');";
 		try{
 			$conn->exec($sql);
 		}

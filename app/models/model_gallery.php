@@ -48,6 +48,21 @@ class Model_gallery extends Model {
 		}
 	}
 
+	function addComment($id, $comment){
+		$date = date('Y-m-d H:i:s');
+		$conn = $this->connectToDB();
+		$sql = "INSERT INTO comments (author, comment, creation_date, photo_id)
+ 				VALUES ('{$this->user}', '{$comment}', '{$date}', '{$id}');";
+		try{
+			$conn->exec($sql);
+		}
+		catch (PDOException $e){
+			echo $sql . "<br>" . $e->getMessage();
+		}
+		$conn = null;
+		return $this->user;
+	}
+
 //		UPDATE photos SET likes = 3 WHERE id = 38;
 //		INSERT INTO comments (author, comment, creation_date, photo_id) VALUES ('root', 'test comment 2', '2019-06-25 09:50:17', '38');"
 //

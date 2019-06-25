@@ -33,6 +33,13 @@ class Controller_gallery extends Controller{
 		$like = (int)$_POST['like'] + 1;
 		$this->model->incLike($id, $like);
 	}
+
+	function addComment(){
+		$id = (int)$_POST['id'];
+		$comment = $_POST['comment'];
+		$author = $this->model->addComment($id, $comment);
+		echo $author;
+	}
 }
 
 ?>
