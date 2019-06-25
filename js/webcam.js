@@ -1,5 +1,7 @@
 
-async function startVideo() {
+import {manageObjects} from "./actions_photo";
+
+window.startVideo = async function startVideo() {
 
     const constraints = {
         video: {
@@ -17,56 +19,51 @@ async function startVideo() {
     } catch (err) {
         console.log(err.message);
     }
-}
+};
 
-async function takeScreenshot() {
-    const canvas = document.createElement('canvas');
-    const video = document.querySelector('video');
+window.takeScreenshot = async function takeScreenshot() {
+     const canvas = document.createElement('canvas');
+     const video = document.querySelector('video');
 
-    canvas.width = video.videoWidth;
-    canvas.height = video.videoHeight;
-    canvas.getContext('2d').drawImage(video, 0, 0);
-    // let canvasData = canvas.toDataURL('image/jpeg');
-    canvas.toBlob( function (blob) {
-        sendPhoto(blob);
-    });
-}
+     canvas.width = video.videoWidth;
+     canvas.height = video.videoHeight;
+     canvas.getContext('2d').drawImage(video, 0, 0);
+     // let canvasData = canvas.toDataURL('image/jpeg');
+     canvas.toBlob(function (blob) {
+         sendPhoto(blob);
+     });
+ };
 
-function uploadPhoto() {
+window.uploadPhoto = function uploadPhoto() {
 
     const file = document.querySelector('[type=file]').files[0];
     sendPhoto(file);
-}
+};
 
 async function sendPhoto(file) {
+
+    const radio = document.querySelector('input[name="mem"]:checked').value;
     const url = "/main/makeMagic";
     const formData = new FormData();
     formData.append('photo', file);
-
+    formData.append('meme', radio);
     try {
         let res = await fetch(url, {
             method: 'POST',
             body: formData
         });
-        let text = await res.text();
-        fetchAddImage(text);
+        let data = await res.json();
+
+        manageObjects(data);
     }
     catch (e) {
         console.log(e.message);
     }
 }
 
-function fetchAddImage(base64) {
 
-    let buffer = Uint8Array.from(window.atob(base64), c => c.charCodeAt(0));
-    let blob = new Blob([buffer], { type: "image/jpeg" });
-    let url = URL.createObjectURL(blob);
-    let img = document.createElement("img");
-    img.src = url;
-    document.getElementById('screens').appendChild(img);
 
-}
-
+// export {sendPhoto, uploadPhoto};
 
 //
 // async function stopVideo(){

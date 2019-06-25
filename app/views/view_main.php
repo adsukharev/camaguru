@@ -22,14 +22,14 @@
 
         <h4>Filters</h4>
         <form id="filters">
-            <input type="checkbox" id="cat" name="cat">
+            <input type="radio" id="cat" name="mem" value="cat" checked>
             <label for="cat">Space Cat </label>
             <br>
-            <input type="checkbox" id="dog" name="dog">
-            <label for="dog">Watermelon Dog </label>
+            <input type="radio" id="life" name="mem" value="life">
+            <label for="life">Thug Life </label>
             <br>
-            <input type="checkbox" id="bob" name="bob">
-            <label for="bob">Angry Bob</label>
+            <input type="radio" id="vietnam" name="mem" value="vietnam">
+            <label for="vietnam">Vietnam's flashbacks</label>
         </form>
     </div>
 
@@ -49,6 +49,6 @@
 
 </div>
 
-<script src="/js/webcam.js"></script>
-<script src="/js/actions_photo.js"></script>
+<script type="module" src="/js/webcam.js"></script>
+<!--<script src="/js/actions_photo.js"></script>-->
 

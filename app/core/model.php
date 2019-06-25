@@ -48,6 +48,24 @@ class Model {
 		return ($user);
 	}
 
+	function deleteImage($path){
+
+		try{
+			$conn = $this->connectToDB();
+			$sql = "DELETE FROM `photos` WHERE path = '{$path}';";
+			$conn->exec($sql);
+			$conn = null;
+			unlink($path);
+			return 1;
+		}
+		catch (Exception $e){
+			$conn = null;
+			return 0;
+		}
+
+	}
+
+
 
 }
 

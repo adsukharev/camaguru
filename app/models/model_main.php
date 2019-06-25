@@ -21,7 +21,7 @@ class Model_main extends Model {
 	function mergePhotos(){
 
 		try{
-			$meme = "vietnam";
+			$meme = $_POST["meme"];
 //			init images
 			$imagesArr = $this->imagesInit($meme);
 			$image = $imagesArr[0];
@@ -50,7 +50,7 @@ class Model_main extends Model {
 			imagedestroy($dest);
 
 			//			TO DO: add this line in production
-//			unlink($this->file_download);
+			unlink($this->file_download);
 		}
 		catch(Exception $e) {
 		   echo $e->getMessage();
@@ -66,7 +66,15 @@ class Model_main extends Model {
 			$this->format = "png";
 		}
 		else {
-			$this->format = $filename_array[1];
+			if ($this->checkPhoto($filename_array[1])){
+				$this->format = $filename_array[1];
+			}
+			else {
+				print_r($filename);
+				exit();
+			}
+
+
 		}
 		$this->file_download = $target_dir_download . $this->filenameDate . "." .$this->format;
 		if (move_uploaded_file($_FILES["photo"]["tmp_name"], $this->file_download)) {
@@ -80,7 +88,7 @@ class Model_main extends Model {
 
 	function sendPhoto(){
 		$imageData = base64_encode(file_get_contents($this->target_file));
-		echo ($imageData);
+		echo json_encode(array($this->target_file,$imageData));
 	}
 
 	function addPhoto(){
@@ -139,6 +147,14 @@ class Model_main extends Model {
 
 		return array($image, $overlay);
 	}
+
+	protected function checkPhoto($format){
+		$formats = array("jpeg", "jpg", "png");
+		if (in_array($format, $formats)){
+			return 1;
+		}
+		return 0;
+}
 
 
 
