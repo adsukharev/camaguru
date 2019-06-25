@@ -1,8 +1,8 @@
 .container.gallery {
 	grid-template-columns: 1fr;
-	grid-template-rows: 3fr;
-	/*align-items: center;*/
-	justify-items: center;
+	grid-template-rows: 1fr 1fr 1fr;
+	align-items: center;
+	/*justify-items: center;*/
 	margin-top: 3vw;
 
 }

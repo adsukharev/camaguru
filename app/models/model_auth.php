@@ -3,7 +3,7 @@
 class Model_auth extends Model {
 
 	function signOut(){
-		unset($_SESSION['loggued_on_user']);
+		$_SESSION['loggued_on_user'] = '';
 	}
 
 	function checkUserExist($login){
