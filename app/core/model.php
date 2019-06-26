@@ -27,11 +27,17 @@ class Model {
 	}
 	function getUsers(){
 
-		$conn = $this->connectToDB();
 		$sql = "SELECT * FROM users;";
-		$sth = $conn->prepare($sql);
-		$sth->execute();
-		$users = $sth->fetchAll();
+		try{
+			$conn = $this->connectToDB();
+			$sth = $conn->prepare($sql);
+			$sth->execute();
+			$users = $sth->fetchAll();
+		}
+		catch (PDOException $e){
+			echo $sql . "<br>" . $e->getMessage();
+			die();
+		}
 
 		$conn = null;
 		return ($users);
@@ -39,20 +45,43 @@ class Model {
 
 	function getUser($login){
 
-		$conn = $this->connectToDB();
 		$sql = "SELECT * FROM users WHERE login = '{$login}';";
-		$sth = $conn->prepare($sql);
-		$sth->execute();
-		$user = $sth->fetch();
+		try{
+			$conn = $this->connectToDB();
+			$sth = $conn->prepare($sql);
+			$sth->execute();
+			$user = $sth->fetch();
+		}
+		catch (PDOException $e){
+			echo $sql . "<br>" . $e->getMessage();
+			die();
+		}
+		$conn = null;
+		return ($user);
+	}
+
+	function getUserWithEmail($email){
+
+		$sql = "SELECT * FROM users WHERE email = '{$email}';";
+		try{
+			$conn = $this->connectToDB();
+			$sth = $conn->prepare($sql);
+			$sth->execute();
+			$user = $sth->fetch();
+		}
+		catch (PDOException $e){
+			echo $sql . "<br>" . $e->getMessage();
+			die();
+		}
 		$conn = null;
 		return ($user);
 	}
 
 	function deleteImage($path){
 
+		$sql = "DELETE FROM `photos` WHERE path = '{$path}';";
 		try{
 			$conn = $this->connectToDB();
-			$sql = "DELETE FROM `photos` WHERE path = '{$path}';";
 			$conn->exec($sql);
 			$conn = null;
 			unlink($path);

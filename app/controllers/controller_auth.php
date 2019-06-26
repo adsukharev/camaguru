@@ -12,13 +12,22 @@ class Controller_auth extends Controller{
 	}
 
 	function signUp(){
-		if ($this->model->checkUserExist($_POST['login'])){
+		$email = $_POST['email'];
+		$login = $_POST['login'];
+		$pass  = $_POST['pass'];
+
+		if ($this->model->checkEmailExist($email)){
+			echo "Email has already singed up";
+			exit();
+		}
+		if ($this->model->checkUserExist($login)){
 			echo "User has already singed up";
+			exit();
 		}
-		else {
-			$this->model->addUser($_POST);
-			$this->view->render('view_main.php', $this->view->template_view);
-		}
+		$token = $this->model->addUser($email, $login, $pass);
+		$this->model->sendMail($email, $login, $token);
+		echo ($login.", go to your email:" . $email . "and activate your account, please");
+//		$this->view->render('view_main.php', $this->view->template_view);
 	}
 
 	function signIn(){
@@ -34,6 +43,10 @@ class Controller_auth extends Controller{
 	function signOut(){
 		$this->model->signOut();
 		$this->index();
+	}
+
+	function forgotPass(){
+		$email = $_POST['email'];
 	}
 
 }
