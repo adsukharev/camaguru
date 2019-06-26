@@ -26,13 +26,8 @@ window.sendComment = async function sentComment(textId) {
 function createNewComment(author, comment, textId) {
 
     let article = document.createElement("article");
-    console.log(article);
     let p = document.createElement("p");
     p.innerHTML = author + ": " + comment;
     article.appendChild(p);
-
-
-    // parent.replaceChild(wrapper, document.getElementById(textId));
-    // wrapper.appendChild(document.getElementById(textId));
     document.getElementById(textId).parentNode.append(article);
 }

@@ -17,21 +17,33 @@ class Controller_auth extends Controller{
 		$pass  = $_POST['pass'];
 
 		if ($this->model->checkEmailExist($email)){
-			echo "Email has already singed up";
+			echo "Email has already signed up";
 			exit();
 		}
 		if ($this->model->checkUserExist($login)){
-			echo "User has already singed up";
+			echo "User has already signed up";
 			exit();
 		}
 		$token = $this->model->addUser($email, $login, $pass);
 		$this->model->sendMail($email, $login, $token);
-		echo ($login.", go to your email:" . $email . "and activate your account, please");
-//		$this->view->render('view_main.php', $this->view->template_view);
+
+		echo ($login.", go to your email: " . $email . " and activate your account, please");
+	}
+
+	function activateAccount(){
+		if (!isset($_GET['activate'])){
+			echo "What the hell! Where is value from activate?!";
+			exit();
+		}
+		$token = $_GET['activate'];
+		$login = $_GET['login'];
+		$this->model->checkToken($token, $login);
+		$this->model->activateUser();
+		echo "Activated. Sign in please. <a href='/main'>Camaguru</a>";
 	}
 
 	function signIn(){
-		$check = $this->model->checkLoginPass($_POST);
+		$check = $this->model->checkLoginPassAuth($_POST);
 		if ($check == 1){
 			$this->view->render('view_main.php', $this->view->template_view);
 		}

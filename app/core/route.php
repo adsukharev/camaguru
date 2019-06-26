@@ -11,7 +11,7 @@ class Route {
 		ROUTE::initMethod($controller_name, $controller_method);
 	}
 
-	function getUri(){
+	static function getUri(){
 		$controller_name = 'main';
 		$controller_method = 'index';
 		$routes = explode('/', $_SERVER['REQUEST_URI']);
@@ -21,6 +21,10 @@ class Route {
 		if (!empty($routes[2])){
 			$controller_method = $routes[2];
 		}
+		if (isset($_GET["activate"])){
+			$pos = strpos($controller_method, '?');
+			$controller_method = substr($controller_method, 0, $pos);
+		}
 		if (isset($_GET["page"]) || isset($_GET["forgotPass"])){
 			$pos = strpos($controller_name, '?');
 			$controller_name = substr($controller_name, 0, $pos);
@@ -28,7 +32,7 @@ class Route {
 		return array($controller_name, $controller_method);
 	}
 
-	function initModel($name){
+	static function initModel($name){
 		$name = 'model_'.$name;
 		$path = 'app/models/';
 		$file = strtolower($name).'.php';
@@ -38,7 +42,7 @@ class Route {
 		}
 	}
 
-	function initController($name){
+	static function initController($name){
 
 		$name = 'controller_'.$name;
 		$path = 'app/controllers/';
@@ -52,7 +56,7 @@ class Route {
 		}
 	}
 
-	function initMethod($controller_name, $controller_method){
+	static function initMethod($controller_name, $controller_method){
 		$controller_name = "Controller_".$controller_name;
 		$controller = new $controller_name;
 
@@ -64,7 +68,7 @@ class Route {
 		}
 	}
 
-	function ErrorPage404(){
+	static function ErrorPage404(){
 		$host = 'http://'.$_SERVER['HTTP_HOST'];
 		echo("NOT FOUND 404");
 		exit();

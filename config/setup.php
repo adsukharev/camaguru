@@ -30,11 +30,11 @@ try {
     $sql = "CREATE TABLE IF NOT EXISTS users (
             id INT NOT NULL AUTO_INCREMENT,
             login VARCHAR(255) NOT NULL,
-            email VARCHAR(255) NOT NULL UNIQUE,
+            email VARCHAR(255) NOT NULL,
             pass VARCHAR(1024) NOT NULL, 
-            token VARCHAR(1024) NOT NULL UNIQUE,
-            status ENUM('0', '1') NOT NULL DEFAULT 0,
-            notification BOOLEAN DEFAULT 1,
+            token VARCHAR(1024) NOT NULL,
+            `status` BOOLEAN NOT NULL DEFAULT 0,
+            notification BOOLEAN NOT NULL DEFAULT 1,
             PRIMARY KEY (id)
         ) ;";
 

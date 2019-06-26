@@ -25,7 +25,6 @@
     <?php
     foreach ($photos as $photo) {
         ?>
-        <div></div>
         <div class="borderGallery" id="<?php echo $photo["path"]?>">
 
 <!--            image-->
@@ -74,7 +73,6 @@
             </div>
 
         </div>
-        <div></div>
 
         <?php } ?>
 

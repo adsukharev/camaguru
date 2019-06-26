@@ -1,6 +1,6 @@
 .container.gallery {
-	grid-template-columns: 1fr 3fr 1fr;
-	align-items: center;
+	grid-template-columns: 1fr 1fr 1fr;
+	/*align-items: center;*/
 	/*justify-items: center;*/
 	margin-top: 3vw;
 	text-align: center;
@@ -8,11 +8,11 @@
 
 .borderGallery {
 
-	border-top-style: dotted;
-	border-right-style: solid;
-	border-bottom-style: dotted;
-	border-left-style: solid;
-	border-color: rgb(92,102,213);
+	/*border-top-style: dotted;*/
+	/*border-right-style: solid;*/
+	/*border-bottom-style: solid;*/
+	/*border-left-style: solid;*/
+	/*border:solid rgb(92,102,213);*/
 }
 
 .container.gallery button{
