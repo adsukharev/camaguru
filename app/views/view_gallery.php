@@ -1,13 +1,23 @@
 
+<?php
+
+    if (!$data['photos']){
+        echo "No photos yet";
+        die();
+    }
+    $photos = $data["photos"];
+    $currUserId = $data["currUserId"];
+    $comments = $data["comments"];
+    $pages = $data["pages"];
+    ?>
+
 <div class="container gallery">
 
     <?php
-    $photos = $data[0];
-    $currUserId = $data[1];
-    $comments = $data[2];
-
-    foreach ($photos as $photo) {?>
-        <div id="<?php echo $photo["path"]?>">
+    foreach ($photos as $photo) {
+        ?>
+        <div></div>
+        <div class="borderGallery" id="<?php echo $photo["path"]?>">
 
 <!--            image-->
             <div>
@@ -55,12 +65,20 @@
             </div>
 
         </div>
-        <?php
-    }
+        <div></div>
 
-    ?>
+        <?php } ?>
 
 </div>
+
+    <ul class="inline">
+<?php for ($i = 1; $i <= $pages; $i++){
+    ?>
+        <li> <a href="/gallery?page=<?php echo $i; ?>"> <?php echo $i; ?></a></li>
+<?php
+}
+?>
+    </ul>
 
 <script type="module" src="/js/comments.js"></script>
 <script type="module" src="/js/actions_photo.js"></script>

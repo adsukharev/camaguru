@@ -1,5 +1,5 @@
 .container.gallery {
-	grid-template-columns: 1fr;
+	grid-template-columns: 1fr 3fr 1fr;
 	align-items: center;
 	/*justify-items: center;*/
 	margin-top: 3vw;
@@ -8,7 +8,11 @@
 
 .borderGallery {
 
-	border: dashed cornflowerblue;
+	border-top-style: dotted;
+	border-right-style: solid;
+	border-bottom-style: dotted;
+	border-left-style: solid;
+	border-color: rgb(92,102,213);
 }
 
 .container.gallery button{
@@ -19,5 +23,14 @@
 
 }
 
+.inline{
+	display: inline;
+}
+
+.inline li {
+	margin-left: 1vw;
+	display: inline;
+	font-size: 2.5vw;
+}
 
 

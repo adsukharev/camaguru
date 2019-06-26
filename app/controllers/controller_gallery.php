@@ -9,16 +9,26 @@ class Controller_gallery extends Controller{
 
 	function index(){
 
-		$imagesUserId = $this->model->getImages();
-		if ($imagesUserId[0]){
-			$comments = $this->model->getComments();
-			array_push($imagesUserId, $comments);
+		$amountPhotos = $this->model->countImages();
+		if ($amountPhotos == 0){
+			$data = array("photos" => '');
+			$this->view->render('view_gallery.php', $this->view->template_view, $data);
 		}
-		else {
-			$imagesUserId[0] = "0";
-			$imagesUserId[2] = "0";
+		if (isset($_GET["page"])){
+			$page = $_GET["page"];
 		}
-		$this->view->render('view_gallery.php', $this->view->template_view, $imagesUserId);
+		else{
+			$page = 1;
+		}
+		$pages = $amountPhotos / 5;
+		$pages += $amountPhotos % 5 == 0 ? 0 : 1;
+		$currUserId = $this->model->id;
+
+		$photos = $this->model->getImages($page);
+		$comments = $this->model->getComments();
+		$data = array("photos" => $photos, "comments" => $comments, "pages" => $pages, "currUserId" => $currUserId);
+
+		$this->view->render('view_gallery.php', $this->view->template_view, $data);
 	}
 
 	function deleteImage(){

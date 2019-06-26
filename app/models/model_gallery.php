@@ -9,28 +9,61 @@ class Model_gallery extends Model {
 
 	}
 
-	function getImages(){
-		$conn = $this->connectToDB();
+	function countImages(){
+		$sql = "SELECT COUNT(*)
+		FROM photos;";
+		try {
+			$conn = $this->connectToDB();
+			$sth = $conn->prepare($sql);
+			$sth->execute();
+			$amountPhotos = $sth->fetch()['COUNT(*)'];
+		}
+		catch (PDOException $e){
+			echo $sql . "<br>" . $e->getMessage();
+			die();
+		}
+		$conn = null;
+		return ($amountPhotos);
+	}
+
+	function getImages($page){
+
+		$until = $page * 5;
+		$from = $until - 5;
 		$sql = "SELECT id, path, likes, user_id
 		FROM photos
-		ORDER BY creation_date DESC;";
-		$sth = $conn->prepare($sql);
-		$sth->execute();
-		$photos = $sth->fetchAll();
-//		$arrayPhoto = $this->makeArrImages($photos);
+		ORDER BY creation_date DESC
+		LIMIT {$from}, {$until};";
+
+		try{
+			$conn = $this->connectToDB();
+			$sth = $conn->prepare($sql);
+			$sth->execute();
+			$photos = $sth->fetchAll();
+		}
+		catch (PDOException $e){
+			echo $sql . "<br>" . $e->getMessage();
+			die();
+		}
 		$conn = null;
-		return (array($photos, $this->id));
+		return ($photos);
 	}
 
 	function getComments(){
 
-		$conn = $this->connectToDB();
 		$sql = "SELECT author, comment, photo_id
 		FROM comments
 		ORDER BY photo_id ASC;";
-		$sth = $conn->prepare($sql);
-		$sth->execute();
-		$comments = $sth->fetchAll();
+		try{
+			$conn = $this->connectToDB();
+			$sth = $conn->prepare($sql);
+			$sth->execute();
+			$comments = $sth->fetchAll();
+		}
+		catch (PDOException $e){
+			echo $sql . "<br>" . $e->getMessage();
+			die();
+		}
 		$conn = null;
 		return $comments;
 	}
@@ -45,19 +78,21 @@ class Model_gallery extends Model {
 		}
 		catch (PDOException $e){
 			echo $sql . "<br>" . $e->getMessage();
+			die();
 		}
 	}
 
 	function addComment($id, $comment){
 		$date = date('Y-m-d H:i:s');
-		$conn = $this->connectToDB();
 		$sql = "INSERT INTO comments (author, comment, creation_date, photo_id)
  				VALUES ('{$this->user}', '{$comment}', '{$date}', '{$id}');";
 		try{
+			$conn = $this->connectToDB();
 			$conn->exec($sql);
 		}
 		catch (PDOException $e){
 			echo $sql . "<br>" . $e->getMessage();
+			die();
 		}
 		$conn = null;
 		return $this->user;
@@ -71,17 +106,8 @@ class Model_gallery extends Model {
 //		FROM photos
 //		LEFT OUTER JOIN comments ON photos.id = comments.photo_id
 //		ORDER BY photos.creation_date DESC;";
-
-//	protected function makeArrImages($data){
 //
-//		$arrayPhoto = array();
-//		foreach ($data as  $arrData){
-//			foreach ($arrData as $photo){
-//				array_push($arrayPhoto,$photo);
-//			}
-//		}
-//		return $arrayPhoto;
-//	}
+//SELECT id, path, likes, user_id FROM photos ORDER BY creation_date DESC LIMIT 1, 6;
 
 }
 ?>

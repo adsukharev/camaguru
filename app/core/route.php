@@ -21,6 +21,10 @@ class Route {
 		if (!empty($routes[2])){
 			$controller_method = $routes[2];
 		}
+		if (isset($_GET["page"])){
+			$pos = strpos($controller_name, '?');
+			$controller_name = substr($controller_name, 0, $pos);
+		}
 		return array($controller_name, $controller_method);
 	}
 
