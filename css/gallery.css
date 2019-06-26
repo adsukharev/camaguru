@@ -27,6 +27,10 @@
 	display: inline;
 }
 
+ul {
+	margin-bottom:4vw;
+}
+
 .inline li {
 	margin-left: 1vw;
 	display: inline;
