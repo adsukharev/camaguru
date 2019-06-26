@@ -8,7 +8,7 @@ class Controller {
 		$this->view = new View();
 		session_start();
 		$controller_name = $this->getUri();
-		if ($controller_name != "auth"){
+		if ($controller_name != "auth" && $controller_name != "gallery"){
 			if (array_key_exists('loggued_on_user', $_SESSION)){
 				if (!$_SESSION['loggued_on_user']){
 					$this->view->render('view_auth.php', $this->view->template_view);

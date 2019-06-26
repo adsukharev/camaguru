@@ -9,6 +9,15 @@
     $currUserId = $data["currUserId"];
     $comments = $data["comments"];
     $pages = $data["pages"];
+
+    $logged = '';
+    $disabled = '';
+    if (isset($_SESSION['loggued_on_user'])){
+        $logged = $_SESSION['loggued_on_user'];
+    }
+    if (!$logged){
+        $disabled = 'disabled';
+    }
     ?>
 
 <div class="container gallery">
@@ -27,7 +36,7 @@
 <!--            buttons Like and Delete-->
             <div>
 
-                <button id="<?php echo $photo["id"]?>" value="<?php echo $photo["likes"]?>" onclick="likePhoto(this.id);return false;">
+                <button id="<?php echo $photo["id"]?>" value="<?php echo $photo["likes"]?>" <?php echo $disabled ?>  onclick="likePhoto(this.id);return false;">
                     Like <?php echo $photo["likes"]?>
                 </button>
 
@@ -45,7 +54,7 @@
 
                 <textarea id="<?php echo($textId);?>" maxlength="100" placeholder="write a comment"></textarea>
                 <br>
-                <button value="<?php echo($textId);?>" onclick="sendComment(this.value);return false;">
+                <button value="<?php echo($textId);?>" onclick="sendComment(this.value);return false;" <?php echo $disabled ?>>
                     Comment
                 </button>
 
