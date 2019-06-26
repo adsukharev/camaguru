@@ -35,13 +35,13 @@
 
 		</div>
 	</header>
-
+    <br>
 	<main>
 			<?php include 'app/views/'.$content_view; ?>
 	</main>
 
 	<footer>
-
+        <p>made my Andrei Sukharev</p>
 	</footer>
 </body>
 

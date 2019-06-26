@@ -1,3 +1,24 @@
 .container {
 	display: grid;
 }
+
+header{
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+}
+
+main {
+	margin-top: 2vw;
+}
+
+footer{
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	background-color: rgb(28,29,32);
+	color: white;
+	text-align: center;
+}
