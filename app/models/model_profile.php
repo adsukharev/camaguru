@@ -37,9 +37,10 @@ class Model_profile extends Model {
 	}
 
 	private function modifyEmail($conn){
-			$sql = "UPDATE users SET email = '{$this->email}' WHERE id = '{$this->id}';";
+			$sql = "UPDATE users SET email =? WHERE id =?;";
 			try{
-				$conn->exec($sql);
+				$stmt= $conn->prepare($sql);
+				$stmt->execute([$this->email, $this->id]);
 			}
 			catch (PDOException $e){
 				echo $sql . "<br>" . $e->getMessage();
@@ -49,9 +50,10 @@ class Model_profile extends Model {
 	}
 
 	private function modifyLogin($conn){
-		$sql = "UPDATE users SET login = '{$this->login}' WHERE id = '{$this->id}';";
+		$sql = "UPDATE users SET login =? WHERE id =?;";
 		try{
-			$conn->exec($sql);
+			$stmt= $conn->prepare($sql);
+			$stmt->execute([$this->login, $this->id]);
 			$_SESSION['loggued_on_user'] = $this->login;
 		}
 		catch (PDOException $e){
@@ -62,9 +64,10 @@ class Model_profile extends Model {
 	}
 
 	private function modifyPass($conn){
-		$sql = "UPDATE users SET pass = '{$this->pass}' WHERE id = '{$this->id}';";
+		$sql = "UPDATE users SET pass =? WHERE id =?;";
 		try{
-			$conn->exec($sql);
+			$stmt= $conn->prepare($sql);
+			$stmt->execute([$this->pass, $this->id]);
 		}
 		catch (PDOException $e){
 			echo $sql . "<br>" . $e->getMessage();
@@ -74,9 +77,10 @@ class Model_profile extends Model {
 	}
 
 	private function modifyNotification($conn){
-		$sql = "UPDATE users SET notification = '{$this->notification}' WHERE id = '{$this->id}';";
+		$sql = "UPDATE users SET notification =? WHERE id =?;";
 		try{
-			$conn->exec($sql);
+			$stmt= $conn->prepare($sql);
+			$stmt->execute([$this->notification, $this->id]);
 		}
 		catch (PDOException $e){
 			echo $sql . "<br>" . $e->getMessage();

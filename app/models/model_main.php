@@ -50,7 +50,6 @@ class Model_main extends Model {
 			imagedestroy($src);
 			imagedestroy($dest);
 
-			//			TO DO: add this line in production
 			unlink($this->file_download);
 		}
 		catch(Exception $e) {
@@ -94,11 +93,11 @@ class Model_main extends Model {
 
 	function addPhoto(){
 
-		$conn = $this->connectToDB();
-
-		$sql = "insert into photos (path, creation_date, user_id) values ('{$this->target_file}', '{$this->filenameDate}', '{$this->id}');";
+		$sql = "insert into photos (path, creation_date, user_id) values (?,?,?);";
 		try{
-			$conn->exec($sql);
+			$conn = $this->connectToDB();
+			$stmt= $conn->prepare($sql);
+			$stmt->execute([$this->target_file, $this->filenameDate, $this->id]);
 		}
 		catch (PDOException $e){
 			echo $sql . "<br>" . $e->getMessage();

@@ -73,10 +73,11 @@ class Model_gallery extends Model
     {
 
         $sql = "UPDATE photos
- 				SET likes = '{$like}' WHERE id = '{$id}';";
+ 				SET likes =? WHERE id =?;";
         try {
             $conn = $this->connectToDB();
-            $conn->exec($sql);
+            $stmt= $conn->prepare($sql);
+            $stmt->execute([$like, $id]);
         } catch (PDOException $e) {
             echo $sql . "<br>" . $e->getMessage();
             die();
@@ -87,10 +88,11 @@ class Model_gallery extends Model
     {
         $date = date('Y-m-d H:i:s');
         $sql = "INSERT INTO comments (author, comment, creation_date, photo_id)
- 				VALUES ('{$this->user}', '{$comment}', '{$date}', '{$id}');";
+ 				VALUES (?,?,?,?);";
         try {
             $conn = $this->connectToDB();
-            $conn->exec($sql);
+            $stmt= $conn->prepare($sql);
+            $stmt->execute([$this->user, $comment, $date, $id]);
         } catch (PDOException $e) {
             echo $sql . "<br>" . $e->getMessage();
             die();

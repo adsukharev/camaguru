@@ -80,10 +80,11 @@ class Model_auth extends Model {
 		$token = md5($email.time());
 		$pass = hash('Whirlpool', trim($pass));
 
-		$sql = "INSERT INTO users (login, email, pass, token) VALUES ('{$login}', '{$email}', '{$pass}', '{$token}');";
+		$sql = "INSERT INTO users (login, email, pass, token) VALUES (?,?,?,?);";
 		try{
 			$conn = $this->connectToDB();
-			$conn->exec($sql);
+			$stmt= $conn->prepare($sql);
+			$stmt->execute([$login, $email, $pass, $token]);
 		}
 		catch (PDOException $e){
 			echo $sql . "<br>" . $e->getMessage();
@@ -103,10 +104,11 @@ class Model_auth extends Model {
 	}
 
 	function activateUser(){
-		$sql = "UPDATE users SET status = 1 WHERE id = '{$this->user['id']}';";
+		$sql = "UPDATE users SET status = 1 WHERE id =?;";
 		try{
 			$conn = $this->connectToDB();
-			$conn->exec($sql);
+			$stmt= $conn->prepare($sql);
+			$stmt->execute([$this->user['id']]);
 		}
 		catch (PDOException $e){
 			echo $sql . "<br>" . $e->getMessage();
@@ -120,10 +122,11 @@ class Model_auth extends Model {
 		$id = $this->user['id'];
 		$humanReadablePass = strval(mt_rand(100, 1000));
 		$hashPass = hash('Whirlpool', $humanReadablePass);
-		$sql = "UPDATE users SET pass = '{$hashPass}' WHERE id = '{$id}';";
+		$sql = "UPDATE users SET pass =? WHERE id =?;";
 		try{
 			$conn = $this->connectToDB();
-			$conn->exec($sql);
+			$stmt= $conn->prepare($sql);
+			$stmt->execute([$hashPass, $id]);
 		}
 		catch (PDOException $e){
 			echo $sql . "<br>" . $e->getMessage();

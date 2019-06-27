@@ -5,9 +5,9 @@
     <div class="form signIn">
         <h3>SignIn</h3>
         <form name="SignIn" action="/auth/signIn" method="post">
-            <input type=text name="login" value='' placeholder="login" required minlength="3" maxlength="10">
+            <input type=text name="login" value='' placeholder="login" required minlength="3" maxlength="15">
             <br>
-            <input type=password name="pass" value='' placeholder="password" required minlength="3" maxlength="10">
+            <input type=password name="pass" value='' placeholder="password" required minlength="3" maxlength="15">
             <br>
             <input style="visibility: hidden">
             <br>
@@ -23,9 +23,9 @@
             <input type=email name="email" value='' placeholder="email" required minlength="3" maxlength="30"
                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="example@mail.ru">
             <br>
-            <input type=text name="login" value='' placeholder="login" required minlength="3" maxlength="10">
+            <input type=text name="login" value='' placeholder="login" required minlength="3" maxlength="15">
             <br>
-            <input type=password name="pass" value='' placeholder="password" required minlength="3" maxlength="20">
+            <input type=password name="pass" value='' placeholder="password" required minlength="3" maxlength="15">
             <br>
             <br>
             <button name="SignUp" value="ok">SignUp</button>

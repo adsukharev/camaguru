@@ -79,10 +79,11 @@ class Model {
 
 	function deleteImage($path){
 
-		$sql = "DELETE FROM `photos` WHERE path = '{$path}';";
+		$sql = "DELETE FROM `photos` WHERE path =?;";
 		try{
 			$conn = $this->connectToDB();
-			$conn->exec($sql);
+			$sth = $conn->prepare($sql);
+			$sth->execute([$path]);
 			$conn = null;
 			unlink($path);
 			return 1;
@@ -91,9 +92,7 @@ class Model {
 			$conn = null;
 			return 0;
 		}
-
 	}
-
 
 
 }

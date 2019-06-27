@@ -3,6 +3,7 @@
 class Route {
 
 	static function start() {
+		ROUTE::checkXSS();
 		$controller_array = ROUTE::getUri();
 		$controller_name = $controller_array[0];
 		$controller_method = $controller_array[1];
@@ -71,8 +72,26 @@ class Route {
 		}
 	}
 
+	static function checkXSS(){
+		if (!empty($_POST)){
+			$array = $_POST;
+		}
+		elseif (!empty($_GET)){
+			$array = $_GET;
+		}
+		else{
+			return ;
+		}
+		$patternScript = "<script";
+		foreach ($array as $dataForCheck){
+			if (strpos($dataForCheck, $patternScript)){
+				echo "<script>alert('Do you want to fuck my ass?')</script>";
+				exit();
+			}
+		}
+	}
+
 	static function ErrorPage404(){
-		$host = 'http://'.$_SERVER['HTTP_HOST'];
 		echo("NOT FOUND 404");
 		exit();
 	}
