@@ -14,7 +14,6 @@ window.sendComment = async function sentComment(textId) {
             body: formData
         });
         const author = await res.text();
-        console.log(author);
         createNewComment(author, comment, textId);
     }
     catch (e) {

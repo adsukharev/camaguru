@@ -21,7 +21,10 @@ window.startVideo = async function startVideo() {
     }
 };
 
-window.takeScreenshot = async function takeScreenshot() {
+
+
+window.takeScreenshot = async function takeScreenshotReal() {
+
      const canvas = document.createElement('canvas');
      const video = document.querySelector('video');
 

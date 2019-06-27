@@ -32,6 +32,7 @@ class Model_profile extends Model {
 		}
 		catch (PDOException $e){
 			echo $sql . "<br>" . $e->getMessage();
+			die();
 		}
 		$conn = null;
 	}
@@ -59,6 +60,7 @@ class Model_profile extends Model {
 			}
 			catch (PDOException $e){
 				echo $sql . "<br>" . $e->getMessage();
+				die();
 			}
 
 	}
@@ -71,6 +73,7 @@ class Model_profile extends Model {
 		}
 		catch (PDOException $e){
 			echo $sql . "<br>" . $e->getMessage();
+			die();
 		}
 
 	}
@@ -82,6 +85,7 @@ class Model_profile extends Model {
 		}
 		catch (PDOException $e){
 			echo $sql . "<br>" . $e->getMessage();
+			die();
 		}
 
 	}
@@ -93,6 +97,7 @@ class Model_profile extends Model {
 		}
 		catch (PDOException $e){
 			echo $sql . "<br>" . $e->getMessage();
+			die();
 		}
 
 	}

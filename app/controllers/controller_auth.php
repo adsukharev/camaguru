@@ -25,9 +25,9 @@ class Controller_auth extends Controller{
 			exit();
 		}
 		$token = $this->model->addUser($email, $login, $pass);
-		$this->model->sendMail($email, $login, $token);
+		$this->model->sendMailToken($email, $login, $token);
 
-		echo ($login.", go to your email: " . $email . " and activate your account, please");
+		echo ($login.", check email: " . $email . " to activate your account, please");
 	}
 
 	function activateAccount(){
@@ -59,6 +59,13 @@ class Controller_auth extends Controller{
 
 	function forgotPass(){
 		$email = $_POST['email'];
+		if (!$this->model->checkEmailExist($email)){
+			echo "Email does not signed up";
+			exit();
+		}
+		$newPass = $this->model->createNewPass();
+		$this->model->sendMailForgotPassword($newPass);
+		echo "Check email: $email";
 	}
 
 }

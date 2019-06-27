@@ -32,7 +32,7 @@ class Model_auth extends Model {
 		$pass = hash('Whirlpool', trim($data['pass']));
 
 		if (!$this->checkAuthorized($login)){
-			return ("You are now authorized. Check your email, please");
+			return ("You did not confirm registration. Check your email, please");
 		}
 		if ($this->checkUserExist($login)){
 			if ($this->user['pass'] == $pass){
@@ -49,7 +49,7 @@ class Model_auth extends Model {
 
 	}
 
-	function sendMail($email, $login, $token){
+	function sendMailToken($email, $login, $token){
 
 		$to      = $email;
 		$subject = 'Activation Camaguru';
@@ -70,10 +70,9 @@ class Model_auth extends Model {
 				</body>
 			</html>";
 
-
 		$headers[] = 'MIME-Version: 1.0';
 		$headers[] = 'Content-type: text/html; charset=iso-8859-1';
-		 mail($to, $subject, $message, implode("\r\n", $headers));
+		mail($to, $subject, $message, implode("\r\n", $headers));
 
 	}
 
@@ -98,7 +97,7 @@ class Model_auth extends Model {
 		$this->user = $this->getUser($login);
 		if ($token != $this->user['token']){
 			echo "Wrong token!";
-			exit();
+			die();
 		};
 		return 1;
 	}
@@ -116,6 +115,51 @@ class Model_auth extends Model {
 		$conn = null;
 	}
 
+
+	 function createNewPass(){
+		$id = $this->user['id'];
+		$humanReadablePass = strval(mt_rand(100, 1000));
+		$hashPass = hash('Whirlpool', $humanReadablePass);
+		$sql = "UPDATE users SET pass = '{$hashPass}' WHERE id = '{$id}';";
+		try{
+			$conn = $this->connectToDB();
+			$conn->exec($sql);
+		}
+		catch (PDOException $e){
+			echo $sql . "<br>" . $e->getMessage();
+			die();
+		}
+		return $humanReadablePass;
+
+	}
+
+	function sendMailForgotPassword($newPass){
+
+		$login = $this->user['login'];
+		$to      = $this->user['email'];;
+		$subject = 'Reset Password Camaguru';
+		$message =
+			"<html>
+				<head>
+				  <title>Reset Password</title>
+				</head>
+				
+				<body>
+					Hi $login,
+					<br>
+					I can't call you smart ass, as you forget your password after some minutes.
+					<br>
+					But ok. Here you are your new password. 
+					<br>
+					new password: $newPass
+				</body>
+			</html>";
+
+		$headers[] = 'MIME-Version: 1.0';
+		$headers[] = 'Content-type: text/html; charset=iso-8859-1';
+		mail($to, $subject, $message, implode("\r\n", $headers));
+
+	}
 }
 
 ?>

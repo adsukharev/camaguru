@@ -15,20 +15,23 @@ class Route {
 		$controller_name = 'main';
 		$controller_method = 'index';
 		$routes = explode('/', $_SERVER['REQUEST_URI']);
+
 		if (!empty($routes[1])){
 			$controller_name = $routes[1];
 		}
 		if (!empty($routes[2])){
 			$controller_method = $routes[2];
 		}
-		if (isset($_GET["activate"])){
-			$pos = strpos($controller_method, '?');
-			$controller_method = substr($controller_method, 0, $pos);
+
+		$posName = strpos($controller_name, '?');
+		if ($posName){
+			$controller_name = substr($controller_name, 0, $posName);
 		}
-		if (isset($_GET["page"]) || isset($_GET["forgotPass"])){
-			$pos = strpos($controller_name, '?');
-			$controller_name = substr($controller_name, 0, $pos);
+		$posMethod = strpos($controller_method, '?');
+		if ($posMethod){
+			$controller_method = substr($controller_method, 0, $posMethod);
 		}
+
 		return array($controller_name, $controller_method);
 	}
 

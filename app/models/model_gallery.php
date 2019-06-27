@@ -97,17 +97,6 @@ class Model_gallery extends Model {
 		$conn = null;
 		return $this->user;
 	}
-
-//		UPDATE photos SET likes = 3 WHERE id = 38;
-//		INSERT INTO comments (author, comment, creation_date, photo_id) VALUES ('root', 'test comment 2', '2019-06-25 09:50:17', '38');"
-//
-
-//		$sql = "SELECT photos.path, photos.likes, photos.user_id, comments.author, comments.comment
-//		FROM photos
-//		LEFT OUTER JOIN comments ON photos.id = comments.photo_id
-//		ORDER BY photos.creation_date DESC;";
-//
-//SELECT id, path, likes, user_id FROM photos ORDER BY creation_date DESC LIMIT 1, 6;
-
 }
+
 ?>

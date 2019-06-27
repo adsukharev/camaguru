@@ -31,13 +31,6 @@ class Controller_gallery extends Controller{
 		$this->view->render('view_gallery.php', $this->view->template_view, $data);
 	}
 
-	function deleteImage(){
-
-		$path = $_POST["imageToDelete"];
-		$res = $this->model->deleteImage($path);
-		echo $res;
-	}
-
 	function incLikes(){
 		$id = (int)$_POST['id'];
 		$like = (int)$_POST['like'] + 1;

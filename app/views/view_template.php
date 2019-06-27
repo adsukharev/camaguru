@@ -6,12 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
     <title>Template</title>
-	<link rel="stylesheet" href="/css/common.css">
+	<link rel="stylesheet" href="/css/common.css?ts=<?=time()?>">
     <link rel="stylesheet" href="/css/auth.css">
-    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/header.css?ts=<?=time()?>">
 	<link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/profile.css">
-    <link rel="stylesheet" href="/css/gallery.css">
+    <link rel="stylesheet" href="/css/gallery.css?ts=<?=time()?>">
 </head>
 
 <body>
