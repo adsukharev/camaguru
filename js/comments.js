@@ -2,6 +2,9 @@
 window.sendComment = async function sentComment(textId) {
     const url = "/gallery/addComment";
     const comment = document.getElementById(textId).value;
+    if (!comment){
+        return ;
+    }
     const id = textId.replace("textarea-", '');
     const formData = new FormData();
 

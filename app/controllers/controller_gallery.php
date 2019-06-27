@@ -41,6 +41,7 @@ class Controller_gallery extends Controller{
 		$id = (int)$_POST['id'];
 		$comment = $_POST['comment'];
 		$author = $this->model->addComment($id, $comment);
+		$this->model->sendNotification($id, $comment);
 		echo $author;
 	}
 }

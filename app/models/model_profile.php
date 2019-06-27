@@ -21,23 +21,6 @@ class Model_profile extends Model {
 			$this->pass = hash('Whirlpool', trim($_POST['pass']));
 	}
 
-	function addUser($data){
-		$email = $data['email'];
-		$login = $data['login'];
-		$pass = hash('Whirlpool', trim($data['pass']));
-		$conn = $this->connectToDB();
-		$sql = "insert into users (login, email, pass) values ('{$login}', '{$email}', '{$pass}');";
-		try{
-			$conn->exec($sql);
-		}
-		catch (PDOException $e){
-			echo $sql . "<br>" . $e->getMessage();
-			die();
-		}
-		$conn = null;
-	}
-
-
 	function modify(){
 		$conn = $this->connectToDB();
 		if ($this->email){

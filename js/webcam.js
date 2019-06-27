@@ -21,8 +21,6 @@ window.startVideo = async function startVideo() {
     }
 };
 
-
-
 window.takeScreenshot = async function takeScreenshotReal() {
 
      const canvas = document.createElement('canvas');
