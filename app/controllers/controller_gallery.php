@@ -9,6 +9,7 @@ class Controller_gallery extends Controller{
 
 	function index(){
 
+		$this->model->createCRSF();
 		$amountPhotos = $this->model->countImages();
 		if ($amountPhotos == 0){
 			$data = array("photos" => '');
@@ -32,12 +33,14 @@ class Controller_gallery extends Controller{
 	}
 
 	function incLikes(){
+		$this->model->checkCRSF();
 		$id = (int)$_POST['id'];
 		$like = (int)$_POST['like'] + 1;
 		$this->model->incLike($id, $like);
 	}
 
 	function addComment(){
+		$this->model->checkCRSF();
 		$id = (int)$_POST['id'];
 		$comment = $_POST['comment'];
 		$author = $this->model->addComment($id, $comment);

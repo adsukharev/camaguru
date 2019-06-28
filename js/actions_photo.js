@@ -1,4 +1,6 @@
 
+import {getToken} from "./webcam";
+
 function manageObjects(data) {
 
     const pathImage = data[0];
@@ -47,8 +49,9 @@ window.deleteImage = async function deleteImage(pathImage) {
 
     const url = "/main/deleteImage";
     const formData = new FormData();
+    const token = getToken();
     formData.append('imageToDelete', pathImage);
-
+    formData.append('csrf', token);
     try {
         await fetch(url, {
             method: 'POST',

@@ -15,6 +15,7 @@
             <input type=checkbox id="notification" name="notification" placeholder="password" checked>
             <label for="notification">Notification </label>
             <br>
+            <input type="hidden" name="csrf" value="<?php echo $data?>">
             <button name="modify" value="ok">Modify</button>
         </form>
     </div>

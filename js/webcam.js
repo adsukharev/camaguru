@@ -29,7 +29,6 @@ window.takeScreenshot = async function takeScreenshotReal() {
      canvas.width = video.videoWidth;
      canvas.height = video.videoHeight;
      canvas.getContext('2d').drawImage(video, 0, 0);
-     // let canvasData = canvas.toDataURL('image/jpeg');
      canvas.toBlob(function (blob) {
          sendPhoto(blob);
      });
@@ -44,17 +43,19 @@ window.uploadPhoto = function uploadPhoto() {
 async function sendPhoto(file) {
 
     const radio = document.querySelector('input[name="mem"]:checked').value;
+    let token = getToken();
     const url = "/main/makeMagic";
     const formData = new FormData();
     formData.append('photo', file);
     formData.append('meme', radio);
+    formData.append('csrf', token);
+
     try {
         let res = await fetch(url, {
             method: 'POST',
-            body: formData
+            body: formData,
         });
         let data = await res.json();
-
         manageObjects(data);
     }
     catch (e) {
@@ -62,21 +63,12 @@ async function sendPhoto(file) {
     }
 }
 
+function getToken() {
+    const token = document.cookie.split(';');
+    const pos = token[1].indexOf('=');
+    const value = token[1].substring(pos + 1);
+    let clearToken = decodeURIComponent(value);
+    return clearToken;
+}
 
-
-// export {sendPhoto, uploadPhoto};
-
-//
-// async function stopVideo(){
-//     const video = document.querySelector('video');
-//     try {
-//         let stream = await navigator.mediaDevices.getUserMedia({audio: false, video: true});
-//         stream.getVideoTracks()[0].stop();
-//     }
-//     catch (err) {
-//         console.log(err.message);
-//     }
-//     // video.src=""
-//
-//
-// }
+export {getToken};

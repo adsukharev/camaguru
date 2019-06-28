@@ -15,7 +15,6 @@
         <form id="upload" method="post" enctype="multipart/form-data">
             Select image to upload:
             <input type="file" name="photo">
-<!--            <input type="submit" name="aa">-->
             <button type="submit" onclick="uploadPhoto();return false;" value="ok" name="upload">Use your photo</button>
         </form>
         <br>
@@ -49,5 +48,6 @@
 
 </div>
 
-<script type="module" src="/js/webcam.js"></script>
+<script type="module" src="/js/webcam.js?v=1"></script>
+<script type="module" src="/js/actions_photo.js?v=1"></script>
 

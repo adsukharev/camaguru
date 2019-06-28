@@ -86,14 +86,38 @@ class Model {
 			$sth->execute([$path]);
 			$conn = null;
 			unlink($path);
-			return 1;
+
 		}
-		catch (Exception $e){
-			$conn = null;
-			return 0;
+		catch (PDOException $e){
+			echo $sql . "<br>" . $e->getMessage();
+			die();
 		}
+		$conn = null;
 	}
 
+	function createCRSF(){
+		$secret = mt_rand(100, 1000);
+		$_SESSION["csrf"] = $secret;
+		$salt = mt_rand(100, 1000);
+		$token = $salt . ":" . MD5($salt . ":" . $secret);
+		setcookie("csrf", $token, time() + (86400 * 30), '/');
+		return $token;
+
+	}
+
+	function checkCRSF(){
+		$secret = $_SESSION["csrf"];
+		$userToken = $_POST['csrf'];
+		$posSalt = strpos($userToken, ':');
+		$salt = substr($userToken, 0, $posSalt);
+
+		$myToken = $salt . ":" . MD5($salt . ":" . $secret);
+		if ($myToken != $userToken){
+			echo "<script>alert('Do you want to fuck my ass?')</script>";
+			exit();
+		}
+
+	}
 
 }
 

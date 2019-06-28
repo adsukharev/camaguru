@@ -163,6 +163,7 @@ class Model_auth extends Model {
 		mail($to, $subject, $message, implode("\r\n", $headers));
 
 	}
+
 }
 
 ?>

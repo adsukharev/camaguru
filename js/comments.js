@@ -1,3 +1,4 @@
+import {getToken} from "./webcam";
 
 window.sendComment = async function sentComment(textId) {
     const url = "/gallery/addComment";
@@ -7,9 +8,11 @@ window.sendComment = async function sentComment(textId) {
     }
     const id = textId.replace("textarea-", '');
     const formData = new FormData();
+    const token = getToken();
 
     formData.append("id", id);
     formData.append("comment", comment);
+    formData.append('csrf', token);
 
     try {
         let res = await fetch(url, {

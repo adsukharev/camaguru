@@ -1,12 +1,13 @@
+import {getToken} from "./webcam";
 
 window.likePhoto = async function likePhoto(id) {
    const url = "/gallery/incLikes";
    let buttonValue = document.getElementById(id).value;
    const formData = new FormData();
-
+    const token = getToken();
    formData.append("id", id);
    formData.append("like", buttonValue);
-
+   formData.append('csrf', token);
    try{
        await fetch(url, {
            method: 'POST',

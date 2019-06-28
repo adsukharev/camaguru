@@ -87,8 +87,8 @@
 ?>
     </ul>
 
-<script type="module" src="/js/comments.js"></script>
-<script type="module" src="/js/actions_photo.js"></script>
-<script type="module" src="/js/likes.js"></script>
+<script type="module" src="/js/comments.js?v=1"></script>
+<script type="module" src="/js/actions_photo.js?v=1"></script>
+<script type="module" src="/js/likes.js?v=1"></script>
 
 
