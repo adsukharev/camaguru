@@ -45,6 +45,7 @@ class Controller_auth extends Controller{
 	function signIn(){
 		$check = $this->model->checkLoginPassAuth($_POST);
 		if ($check == 1){
+			$this->model->createCSRF();
 			$this->view->render('view_main.php', $this->view->template_view);
 		}
 		else {

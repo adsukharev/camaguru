@@ -6,15 +6,7 @@ class Model {
 	public $id;
 
 	function connectToDB(){
-		$DB_SERVER = "127.0.0.1";
-		$DB_USER = "root";
-		$DB_PASSWORD = "root";
-		$DB_NAME = "camaguruDB";
-		$DB_DSN = "mysql:host=$DB_SERVER;dbname=$DB_NAME";
-		$OPTIONS = [
-			PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-			PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
-		];
+		include "config/database.php";
 		try {
 			$conn = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD, $OPTIONS);
 			return $conn;
@@ -95,7 +87,7 @@ class Model {
 		$conn = null;
 	}
 
-	function createCRSF(){
+	function createCSRF(){
 		$secret = mt_rand(100, 1000);
 		$_SESSION["csrf"] = $secret;
 		$salt = mt_rand(100, 1000);
@@ -105,7 +97,7 @@ class Model {
 
 	}
 
-	function checkCRSF(){
+	function checkCSRF(){
 		$secret = $_SESSION["csrf"];
 		$userToken = $_POST['csrf'];
 		$posSalt = strpos($userToken, ':');

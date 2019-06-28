@@ -8,12 +8,12 @@ class Controller_main extends Controller{
 	}
 
 	function index(){
-		$this->model->createCRSF();
+		$this->model->createCSRF();
 		$this->view->render('view_main.php', $this->view->template_view);
 	}
 
 	function makeMagic(){
-		$this->model->checkCRSF();
+		$this->model->checkCSRF();
 		$this->model->downloadPhoto();
 		$this->model->mergePhotos();
 		$this->model->addPhoto();
@@ -22,7 +22,7 @@ class Controller_main extends Controller{
 	}
 
 	function deleteImage(){
-		$this->model->checkCRSF();
+		$this->model->checkCSRF();
 		$path = $_POST["imageToDelete"];
 		$this->model->deleteImage($path);
 	}

@@ -8,13 +8,13 @@ class Controller_profile extends Controller
 	}
 
 	function index(){
-		$token = $this->model->createCRSF();
+		$token = $this->model->createCSRF();
 		$this->view->render('view_profile.php', $this->view->template_view, $token);
 
 	}
 
 	function modify(){
-		$this->model->checkCRSF();
+		$this->model->checkCSRF();
 		$this->model->modify();
 		$this->index();
 	}
