@@ -23,7 +23,7 @@ Full specification: https://cdn.intra.42.fr/pdf/pdf/778/camagru.en.pdf
 - Profile to change user private data
 - “AJAXify” exchanges with the server.
 
-# Getting Started
+## Getting Started
 
 ### Install docker
 
@@ -33,14 +33,14 @@ docker-machine create --driver virtualbox Camaguru
 eval $(docker-machine env Camaguru)
 ```
 
-### Build and Run
+## Build and Run
 
 ```
 docker-compose up --build -d
 go to http://localhost:8001
 ```
 
-### NOTE DOCKER
+### Note Docker
 Run mysql client:
 
 ```
