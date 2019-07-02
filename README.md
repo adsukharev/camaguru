@@ -58,3 +58,6 @@ Remove all:
  docker rm $(docker ps -a -q)
  docker rmi $(docker images -a -q)
   ```
+  
+ #### P.S
+ This project is about functionality not about beautiful design
