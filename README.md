@@ -60,4 +60,4 @@ Remove all:
   ```
   
  #### P.S
- This project is about functionality not about beautiful design
+ This project is about functionality not about beautiful design :)
