@@ -92,9 +92,8 @@ class Model {
 		$_SESSION["csrf"] = $secret;
 		$salt = mt_rand(100, 1000);
 		$token = $salt . ":" . MD5($salt . ":" . $secret);
-		setcookie("csrf", $token, time() + (86400 * 30), '/');
+		setcookie("my_token", $token, time() + (86400 * 30), '/');
 		return $token;
-
 	}
 
 	function checkCSRF(){
@@ -104,6 +103,7 @@ class Model {
 		$salt = substr($userToken, 0, $posSalt);
 
 		$myToken = $salt . ":" . MD5($salt . ":" . $secret);
+//        echo $myToken . " " . $userToken;
 		if ($myToken != $userToken){
 			echo "<script>alert('Do you want to fuck my ass?')</script>";
 			exit();
@@ -113,4 +113,3 @@ class Model {
 
 }
 
-?>

@@ -1,5 +1,5 @@
 
-import {getToken} from "./webcam";
+import {getToken} from "./webcam.js";
 
 function manageObjects(data) {
 

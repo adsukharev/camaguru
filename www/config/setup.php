@@ -31,7 +31,7 @@ try {
             id INT NOT NULL AUTO_INCREMENT,
             login VARCHAR(255) NOT NULL,
             email VARCHAR(255) NOT NULL,
-            pass VARCHAR(1024) NOT NULL, 
+            pass VARCHAR(1024) NOT NULL,
             token VARCHAR(1024) NOT NULL,
             `status` BOOLEAN NOT NULL DEFAULT 0,
             notification BOOLEAN NOT NULL DEFAULT 1,
@@ -51,7 +51,7 @@ try {
             id INT NOT NULL AUTO_INCREMENT,
             path VARCHAR(1024) NOT NULL,
             creation_date TIMESTAMP NOT NULL,
-            likes INT DEFAULT 0, 
+            likes INT DEFAULT 0,
             user_id INT NOT NULL,
             FOREIGN KEY (user_id)
                 REFERENCES users(id)
@@ -94,4 +94,3 @@ catch(PDOException $e){
 $conn = null;
 
 ?>
-

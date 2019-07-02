@@ -1,4 +1,4 @@
-import {getToken} from "./webcam";
+import {getToken} from "./webcam.js";
 
 window.likePhoto = async function likePhoto(id) {
    const url = "/gallery/incLikes";

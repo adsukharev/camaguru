@@ -1,24 +1,21 @@
-
 <?php
-
-    if (!$data['photos']){
-        echo "No photos yet";
-        die();
-    }
-    $photos = $data["photos"];
-    $currUserId = $data["currUserId"];
-    $comments = $data["comments"];
-    $pages = $data["pages"];
-
-    $logged = '';
-    $disabled = '';
-    if (isset($_SESSION['loggued_on_user'])){
-        $logged = $_SESSION['loggued_on_user'];
-    }
-    if (!$logged){
-        $disabled = 'disabled';
-    }
-    ?>
+if (!$data['photos']){
+    echo "No photos yet";
+    die();
+}
+$photos = $data["photos"];
+$currUserId = $data["currUserId"];
+$comments = $data["comments"];
+$pages = $data["pages"];
+$logged = '';
+$disabled = '';
+if (isset($_SESSION['loggued_on_user'])){
+    $logged = $_SESSION['loggued_on_user'];
+}
+if (!$logged){
+    $disabled = 'disabled';
+}
+?>
 
 <div class="container gallery">
 
@@ -27,12 +24,12 @@
         ?>
         <div class="borderGallery" id="<?php echo $photo["path"]?>">
 
-<!--            image-->
+            <!--            image-->
             <div>
                 <img src="<?php echo $photo["path"]?>">
             </div>
 
-<!--            buttons Like and Delete-->
+            <!--            buttons Like and Delete-->
             <div>
 
                 <button id="<?php echo $photo["id"]?>" value="<?php echo $photo["likes"]?>" <?php echo $disabled ?>  onclick="likePhoto(this.id);return false;">
@@ -40,14 +37,14 @@
                 </button>
 
                 <?php if ($photo["user_id"] == $currUserId) : ?>
-                <button value="<?php echo $photo["path"]?>" onclick="deleteImage(this.value);return false;">
-                    Delete
-                </button>
+                    <button value="<?php echo $photo["path"]?>" onclick="deleteImage(this.value);return false;">
+                        Delete
+                    </button>
                 <?php endif; ?>
 
             </div>
 
-<!--            comments-->
+            <!--            comments-->
             <div>
                 <?php $textId = "textarea-".$photo['id'];?>
 
@@ -57,7 +54,7 @@
                     Comment
                 </button>
 
-<!--                previous comments-->
+                <!--                previous comments-->
                 <?php foreach ($comments as $comment) { ?>
                     <?php if ($comment["photo_id"] == ($photo["id"])): ?>
 
@@ -74,21 +71,19 @@
 
         </div>
 
-        <?php } ?>
+    <?php } ?>
 
 </div>
 
-    <ul class="inline">
-<?php for ($i = 1; $i <= $pages; $i++){
-    ?>
+<ul class="inline">
+    <?php for ($i = 1; $i <= $pages; $i++){
+        ?>
         <li> <a href="/gallery?page=<?php echo $i; ?>"> <?php echo $i; ?></a></li>
-<?php
-}
-?>
-    </ul>
+        <?php
+    }
+    ?>
+</ul>
 
 <script type="module" src="/js/comments.js?v=1"></script>
 <script type="module" src="/js/actions_photo.js?v=1"></script>
 <script type="module" src="/js/likes.js?v=1"></script>
-
-

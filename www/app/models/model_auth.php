@@ -32,7 +32,7 @@ class Model_auth extends Model {
 		$pass = hash('Whirlpool', trim($data['pass']));
 
 		if (!$this->checkAuthorized($login)){
-			return ("You did not confirm registration. Check your email, please");
+			return ("User does not exist or you did not confirm registration. Check your email, please");
 		}
 		if ($this->checkUserExist($login)){
 			if ($this->user['pass'] == $pass){
@@ -66,7 +66,7 @@ class Model_auth extends Model {
 					<br>
 					To activate your account, please click the link below.
 					<br>
-					<a href='http://localhost/auth/activateAccount?activate=$token&login=$login'>Activate</a>
+					<a href='http://localhost:8001/auth/activateAccount?activate=$token&login=$login'>Activate</a>
 				</body>
 			</html>";
 

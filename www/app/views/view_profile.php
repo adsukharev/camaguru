@@ -1,4 +1,3 @@
-
 <div class="container profile">
 
     <div class="form signUp">

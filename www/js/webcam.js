@@ -1,5 +1,5 @@
 
-import {manageObjects} from "./actions_photo";
+import {manageObjects} from "./actions_photo.js";
 
 window.startVideo = async function startVideo() {
 
@@ -65,8 +65,14 @@ async function sendPhoto(file) {
 
 function getToken() {
     const token = document.cookie.split(';');
-    const pos = token[1].indexOf('=');
-    const value = token[1].substring(pos + 1);
+    let neededToken;
+    for (let i = 0; i < token.length; i++){
+        if (token[i].indexOf("my_token") !== -1)
+            neededToken = token[i];
+    }
+
+    const pos = neededToken.indexOf('=');
+    const value = neededToken.substring(pos + 1);
     let clearToken = decodeURIComponent(value);
     return clearToken;
 }

@@ -1,4 +1,4 @@
-import {getToken} from "./webcam";
+import {getToken} from "./webcam.js";
 
 window.sendComment = async function sentComment(textId) {
     const url = "/gallery/addComment";
