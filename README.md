@@ -13,7 +13,7 @@ Full specification: https://cdn.intra.42.fr/pdf/pdf/778/camagru.en.pdf
 - [Deployment] Docker
 
 
-##### Goals:
+#### Goals:
 
 - Everything must be secured (CSRF, SQl-debugging)
 - Sign In and Sign Up components with email confirmation
