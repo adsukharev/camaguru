@@ -69,6 +69,28 @@ class Model {
 		return ($user);
 	}
 
+    function getAllImages()
+    {
+        $this->user = $_SESSION['loggued_on_user'];
+        $this->id= $this->getUser($this->user)['id'];
+        $sql = "SELECT id, path
+		FROM photos
+		WHERE user_id = '{$this->id}'
+		ORDER BY creation_date ASC;";
+
+        try {
+            $conn = $this->connectToDB();
+            $sth = $conn->prepare($sql);
+            $sth->execute();
+            $photos = $sth->fetchAll();
+        } catch (PDOException $e) {
+            echo $sql . "<br>" . $e->getMessage();
+            die();
+        }
+        $conn = null;
+        return ($photos);
+    }
+
 	function deleteImage($path){
 
 		$sql = "DELETE FROM `photos` WHERE path =?;";
@@ -103,7 +125,6 @@ class Model {
 		$salt = substr($userToken, 0, $posSalt);
 
 		$myToken = $salt . ":" . MD5($salt . ":" . $secret);
-//        echo $myToken . " " . $userToken;
 		if ($myToken != $userToken){
 			echo "<script>alert('Do you want to fuck my ass?')</script>";
 			exit();

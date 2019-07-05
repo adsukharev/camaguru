@@ -9,7 +9,8 @@ class Controller_main extends Controller{
 
 	function index(){
 		$this->model->createCSRF();
-		$this->view->render('view_main.php', $this->view->template_view);
+		$data = $this->model->getAllImages();
+		$this->view->render('view_main.php', $this->view->template_view, $data);
 	}
 
 	function makeMagic(){

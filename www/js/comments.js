@@ -6,6 +6,9 @@ window.sendComment = async function sentComment(textId) {
     if (!comment){
         return ;
     }
+    if (!checkComment(comment)){
+        return ;
+    }
     const id = textId.replace("textarea-", '');
     const formData = new FormData();
     const token = getToken();
@@ -27,6 +30,15 @@ window.sendComment = async function sentComment(textId) {
     }
 
 };
+
+function checkComment(comment) {
+    const patternScript = "<script";
+    if (comment.match(patternScript)){
+            console.log('Do you want to fuck my ass?');
+            return 0;
+    }
+    return 1;
+}
 
 function createNewComment(author, comment, textId) {
 

@@ -16,10 +16,7 @@ function createButton(pathImage) {
     const button = document.createElement("button");
     button.innerHTML = "Delete";
     button.addEventListener ("click", function() {
-        const result = confirm("Confirm for deleting image above");
-        if (result){
             deleteImage(pathImage);
-        }
     });
     return button;
 }

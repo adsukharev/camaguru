@@ -16,6 +16,11 @@ class Controller_auth extends Controller{
 		$login = $_POST['login'];
 		$pass  = $_POST['pass'];
 
+		if ($this->model->passwordValidation($pass)){
+			echo "Password is not valid. Ex: 123Wertyq";
+			exit();
+		}
+
 		if ($this->model->checkEmailExist($email)){
 			echo "Email has already signed up";
 			exit();
@@ -46,7 +51,7 @@ class Controller_auth extends Controller{
 		$check = $this->model->checkLoginPassAuth($_POST);
 		if ($check == 1){
 			$this->model->createCSRF();
-			$this->view->render('view_main.php', $this->view->template_view);
+			header("LOCATION: http://localhost:8001/main");
 		}
 		else {
 			echo $check;

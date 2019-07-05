@@ -16,7 +16,6 @@ class Model_main extends Model {
 		$this->filenameDate = date('Y-m-d H:i:s');
 		$this->target_file = $this->target_dir . $this->filenameDate.".png";
 
-
 	}
 
 	function mergePhotos(){
@@ -154,9 +153,7 @@ class Model_main extends Model {
 			return 1;
 		}
 		return 0;
-}
-
-
+	}
 
 }
 

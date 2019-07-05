@@ -6,6 +6,18 @@ class Model_auth extends Model {
 		$_SESSION['loggued_on_user'] = '';
 	}
 
+	function passwordValidation($pass)
+	{
+		if (preg_match('~[A-Z]~', $pass) &&
+			preg_match('~[a-z]~', $pass) &&
+			preg_match('~\d~', $pass) &&
+			(strlen($pass) > 2)) {
+			return 0;
+		}
+		return 1;
+	}
+
+
 	function checkUserExist($login){
 		$this->user = $this->getUser($login);
 		if ($this->user['login'] == $login){

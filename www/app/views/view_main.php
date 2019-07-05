@@ -6,7 +6,7 @@
         <h4>WebCamera</h4>
         <button id="startVideo" onclick="startVideo()">Start webcamera</button>
         <br>
-        <button onclick="takeScreenshot()" id="screenshot-button" >Take a screenshot</button>
+        <button onclick="takeScreenshot()" id="screenshot-button">Take a screenshot</button>
         <br>
         <h4>Upload Photo</h4>
         <form id="upload" method="post" enctype="multipart/form-data">
@@ -36,6 +36,19 @@
     <div class="borderBlue">
         <h3>Your Photos</h3>
         <div id="screens">
+
+            <?php if ($data) : ?>
+                <?php foreach ($data as $photo) { ?>
+                <div id="<?php echo $photo["path"] ?>">
+<!---->
+                    <img src="<?php echo $photo["path"] ?>">
+                    <button value="<?php echo $photo["path"] ?>" onclick="deleteImage(this.value);return false;">
+                        Delete
+                    </button>
+                </div>
+                <?php }?>
+
+            <?php endif; ?>
         </div>
     </div>
 </div>
