@@ -33,6 +33,14 @@ docker-machine create --driver virtualbox Camaguru
 eval $(docker-machine env Camaguru)
 ```
 
+### Configure sSTMP
+
+In Dockerfile change fields with your email and password to proper work of send mail service:
+```
+AuthUser=[your gmail]
+AuthPass=[password of email]
+```
+
 ## Build and Run
 
 ```
@@ -40,7 +48,8 @@ docker-compose up --build -d
 go to http://localhost:8001
 ```
 
-### Note Docker
+### Notes
+
 Run mysql client:
 
 ```

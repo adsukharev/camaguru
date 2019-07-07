@@ -10,8 +10,8 @@ ADD ./php/php.ini /usr/local/etc/php/php.ini
 
 RUN echo "root=yourAdmin@email.com" >> /etc/ssmtp/ssmtp.conf
 RUN echo "mailhub=smtp.gmail.com:587" >> /etc/ssmtp/ssmtp.conf
-RUN echo "AuthUser=mr.andrey.sd@gmail.com" >> /etc/ssmtp/ssmtp.conf
-RUN echo "AuthPass=*****" >> /etc/ssmtp/ssmtp.conf
+RUN echo "AuthUser=[your gmail]" >> /etc/ssmtp/ssmtp.conf
+RUN echo "AuthPass=[password of email]" >> /etc/ssmtp/ssmtp.conf
 RUN echo "UseTLS=YES" >> /etc/ssmtp/ssmtp.conf
 RUN echo "UseSTARTTLS=YES" >> /etc/ssmtp/ssmtp.conf
 RUN echo "sendmail_path=sendmail -i -t" >> /usr/local/etc/php/conf.d/php-sendmail.ini
